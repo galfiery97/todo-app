@@ -6,11 +6,11 @@ import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 function App () {
-  const [activity, setActivity] = useState("");
+  const [activity, setActivity] = useState([]);
   return (
     <div className="App">
       <Header />
-      <TodoForm setActivity={setActivity} />
+      <TodoForm activity={activity} setActivity={setActivity} />
       <TodoList activity={activity} />
     </div>
   );

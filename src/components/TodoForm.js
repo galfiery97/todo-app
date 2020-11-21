@@ -5,14 +5,16 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-function TodoForm({setActivity}) {
-    const [ value, setValue ] = useState("");
+function TodoForm(props) {
+    const { activity, setActivity } = props;
+    const [ value, setValue ] = useState({});
+    const values = [];
     function handleChange(e) {
-        setValue(e.target.value);
+        setValue({value: e.target.value});
     }
-
-    function handleSubmit(e) {
-        setActivity(value);
+    function handleClick() {
+        values.push(value);
+        setActivity(activity.concat(values));
     }
     return (
         <Form className="todo-form">
@@ -24,7 +26,7 @@ function TodoForm({setActivity}) {
                     <Form.Control onChange={handleChange} type="text" placeholder="Inserisci attività" />
                 </Col>
                 <Col xs="auto">
-                    <Button onClick={handleSubmit} variant="primary" >
+                    <Button onClick={handleClick} variant="primary" >
                         <FontAwesomeIcon icon={faPlus} />
                     </Button>
                 </Col>
