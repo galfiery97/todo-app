@@ -6,21 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function TodoForm(props) {
-    const { activity, setActivity } = props;
+    const { items, setItems } = props;
     const [ value, setValue ] = useState({});
     const values = [];
     function handleChange(e) {
-        setValue({value: e.target.value});
+        setValue({value: e.target.value, done: false});
     }
     function handleClick() {
         values.push(value);
-        setActivity(activity.concat(values));
+        setItems(items.concat(values));
     }
     return (
         <Form className="todo-form">
-            <Form.Row>
-                <h5> Inserisci le attività da svolgere </h5>
-            </Form.Row>
             <Form.Row controlid="formBasicEmail">
                 <Col xs="auto">
                     <Form.Control onChange={handleChange} type="text" placeholder="Inserisci attività" />
